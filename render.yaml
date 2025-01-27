@@ -5,11 +5,11 @@ services:
     dockerfilePath: backend/photo-map/Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://db:5432/photo_map
+        value: jdbc:postgresql://<HOST>:<PORT>/<DATABASE_NAME>
       - key: SPRING_DATASOURCE_USERNAME
         value: postgres
       - key: SPRING_DATASOURCE_PASSWORD
-        value: 4898must@ng
+        value: sua_senha_forte
 
   - name: frontend
     type: web
@@ -17,16 +17,4 @@ services:
     dockerfilePath: frontend/Dockerfile.prod
     envVars:
       - key: REACT_APP_BACKEND_URL
-        value: http://backend:8092
-
-  - name: db
-    type: database
-    plan: free
-    databaseType: postgres
-    envVars:
-      - key: POSTGRES_USER
-        value: postgres
-      - key: POSTGRES_PASSWORD
-        value: 4898must@ng
-      - key: POSTGRES_DB
-        value: photo_map
+        value: https://backend.onrender.com
