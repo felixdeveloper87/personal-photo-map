@@ -6,11 +6,11 @@ services:
     dockerfilePath: backend/photo-map/Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://<HOST>:<PORT>/<DATABASE_NAME>
+        value: jdbc:postgresql://dpg-cubrv...ahncs0-a:5432/photo_map_db
       - key: SPRING_DATASOURCE_USERNAME
-        value: postgres
+        value: photo_map_db_user
       - key: SPRING_DATASOURCE_PASSWORD
-        value: sua_senha_forte
+        value: olFXPrFw3jFnOVyLM74Tf2kNli4cIDZh
 
   - name: frontend
     type: web
