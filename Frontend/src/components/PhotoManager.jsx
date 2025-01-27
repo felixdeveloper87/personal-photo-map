@@ -45,7 +45,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
     }, [countryId, selectedYear, showAllSelected, isLoggedIn]);
 
     const fetchYears = () => {
-        fetch(`http://localhost:8092/api/images/${countryId}/years`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/${countryId}/years`, {
             headers: getAuthHeaders(),
         })
             .then((response) => {
@@ -75,7 +75,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
             return; // Do not fetch images if no year is selected and "Show all" is not selected
         }
 
-        let url = `http://localhost:8092/api/images/${countryId}`;
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/images/${countryId}`;
         if (selectedYear && !showAllSelected) {
             url += `/${selectedYear}`;
         }
@@ -92,7 +92,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
             .then((data) => {
                 if (Array.isArray(data)) {
                     const imageUrls = data.map((image) => {
-                        const url = `http://localhost:8092${image.filePath}`;
+                        const url = `${process.env.REACT_APP_BACKEND_URL}${image.filePath}`;
                         return { url, id: image.id, year: image.year };
                     });
                     console.log('Imagens processadas:', imageUrls);
@@ -132,7 +132,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
             )
         ) {
             const deletePromises = ids.map((id) =>
-                fetch(`http://localhost:8092/api/images/delete/${id}`, {
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/delete/${id}`, {
                     method: 'DELETE',
                     headers: getAuthHeaders(),
                 })
@@ -162,7 +162,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
                 `Tem certeza que deseja deletar todas as imagens do ano ${year}?`
             )
         ) {
-            fetch(`http://localhost:8092/api/images/${countryId}/${year}`, {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}2/api/images/${countryId}/${year}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             })
@@ -195,7 +195,7 @@ const PhotoManager = ({ countryId, onUploadSuccess }) => {
             )
         ) {
             fetch(
-                `http://localhost:8092/api/images/delete-all-images/${countryId}`,
+                `${process.env.REACT_APP_BACKEND_URL}/api/images/delete-all-images/${countryId}`,
                 {
                     method: 'DELETE',
                     headers: getAuthHeaders(),

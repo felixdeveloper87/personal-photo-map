@@ -19,7 +19,7 @@ const About = () => {
   useEffect(() => {
     const token = localStorage.getItem('token'); // Retrieving JWT for authorization
     if (token) {
-      fetch('http://localhost:8092/api/images/countries-with-photos', {
+      fetch('${process.env.REACT_APP_BACKEND_URL}/api/images/countries-with-photos', {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((response) => response.json()) // Parsing API response

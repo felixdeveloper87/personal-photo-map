@@ -49,7 +49,7 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8092/api/auth/register', {
+      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

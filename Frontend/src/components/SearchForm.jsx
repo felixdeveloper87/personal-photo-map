@@ -21,7 +21,7 @@ export default function SearchForm({ countriesWithPhotos, onSearch }) {
 
   useEffect(() => {
     if (selectedCountry) {
-      fetch(`http://localhost:8092/api/images/${selectedCountry}/years`, {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/${selectedCountry}/years`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

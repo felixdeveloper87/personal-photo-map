@@ -25,7 +25,7 @@ const Timeline = () => {
 
   const fetchAllPhotos = async () => {
     try {
-      const response = await fetch('http://localhost:8092/api/images/allPictures', {
+      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/images/allPictures', {
         headers: getAuthHeaders(),
       });
 
@@ -36,7 +36,7 @@ const Timeline = () => {
       const data = await response.json();
       if (Array.isArray(data)) {
         const imageUrls = data.map((image) => ({
-          url: `http://localhost:8092${image.filePath}`,
+          url: `${process.env.REACT_APP_BACKEND_URL}${image.filePath}`,
           id: image.id,
           year: image.year
           // ... qualquer outra propriedade que você precise
