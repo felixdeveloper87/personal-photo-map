@@ -8,13 +8,14 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 WORKDIR /app
 
 # Copia os arquivos de dependências
-COPY ./Frontend/package*.json ./
+COPY ./Frontend/package*.json ./Frontend/
 
 # Instala as dependências
+WORKDIR /app/Frontend
 RUN npm install
 
 # Copia o restante do projeto
-COPY . .
+COPY ./Frontend/ .
 
 # Cria o build de produção
 RUN npm run build
