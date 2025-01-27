@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend/photo-map
+      dockerfile: Dockerfile
+    container_name: backend-container
+    ports:
+      - "8092:8092"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/photo_map
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 4898must@ng
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 4898must@ng
+      POSTGRES_DB: photo_map
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # FRONTEND PARA DESENVOLVIMENTO
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend-dev-container
+    ports:
+      - "8080:8080" # Porta do Vite no desenvolvimento
+    volumes:
+      - ./frontend:/app # Mapeamento para hot reload
+      - /app/node_modules
+    environment:
+      VITE_BACKEND_URL: http://backend:8092
+    networks:
+      - app-network
+    command: npm run dev # Comando do Vite para hot reload
+
+  # FRONTEND PARA PRODUÇÃO
+  # Comente/descomente conforme necessário
+  # frontend-prod:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.prod
+  #   container_name: frontend-prod-container
+  #   ports:
+  #     - "8080:80" # Porta do NGINX no ambiente de produção
+  #   environment:
+  #     REACT_APP_BACKEND_URL: http://backend:8092
+  #   networks:
+  #     - app-network
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge
