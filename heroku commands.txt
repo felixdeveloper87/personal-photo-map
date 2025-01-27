@@ -6,4 +6,7 @@ heroku logs --tail --app personal-photo-map
 
 heroku apps --all
 
+git status
+
+git add .
 
