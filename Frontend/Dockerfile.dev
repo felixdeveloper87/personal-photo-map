@@ -1,0 +1,20 @@
+# Etapa 1: Usar uma imagem do Node.js para desenvolvimento
+FROM node:18-alpine
+
+# Definir o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copiar apenas os arquivos de dependências (melhor para caching)
+COPY package*.json ./
+
+# Instalar as dependências do projeto
+RUN npm install
+
+# Copiar o restante do código do projeto
+COPY . .
+
+# Expõe a porta usada pelo Vite no ambiente de desenvolvimento
+EXPOSE 8080
+
+# Comando para rodar o servidor Vite com hot reload
+CMD ["npm", "run", "dev"]

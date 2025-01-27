@@ -1,0 +1,35 @@
+# Etapa 1: Construir a aplicação (build)
+FROM node:18-alpine AS build
+
+# Aumenta o heap do Node para 4GB (ajuste se necessário)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+# Define a pasta de trabalho
+WORKDIR /app
+
+# Copia os arquivos de dependências
+COPY package*.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Copia o restante do projeto
+COPY . .
+
+# Cria o build de produção (ajuste se seu script for diferente)
+RUN npm run build
+
+# Etapa 2: Servir usando NGINX
+FROM nginx:stable-alpine
+
+# Remove os arquivos HTML padrão do NGINX
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copia os arquivos compilados (build) para a pasta padrão do NGINX
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Expõe a porta 80 (padrão NGINX)
+EXPOSE 80
+
+# Comando para rodar o nginx
+CMD ["nginx", "-g", "daemon off;"]
