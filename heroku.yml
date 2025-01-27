@@ -1,3 +1,6 @@
+# build:
+#   docker:
+#     web: ./Frontend/Dockerfile.prod
 build:
   docker:
-    web: ./Frontend/Dockerfile.prod
+    web: ./Dockerfile.prod  # Caminho atualizado para a raiz
