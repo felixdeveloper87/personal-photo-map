@@ -1,6 +1,7 @@
 services:
   - name: backend
     type: web
+    runtime: docker
     plan: free
     dockerfilePath: backend/photo-map/Dockerfile
     envVars:
@@ -13,6 +14,7 @@ services:
 
   - name: frontend
     type: web
+    runtime: docker
     plan: free
     dockerfilePath: frontend/Dockerfile.prod
     envVars:
