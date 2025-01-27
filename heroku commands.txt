@@ -4,4 +4,6 @@ heroku open --app personal-photo-map
 
 heroku logs --tail --app personal-photo-map
 
+heroku apps --all
+
 
