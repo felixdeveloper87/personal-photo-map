@@ -6,7 +6,7 @@ services:
     dockerfilePath: Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://dpg-cubrv...ahncs0-a:5432/photo_map_db
+        value: jdbc:postgresql://dpg-cubrvt1opnds73ahncs0-a:5432/photo_map_db
       - key: SPRING_DATASOURCE_USERNAME
         value: photo_map_db_user
       - key: SPRING_DATASOURCE_PASSWORD
