@@ -32,36 +32,36 @@ services:
       - app-network
 
   # FRONTEND PARA DESENVOLVIMENTO
-  frontend-dev:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.dev
-    container_name: frontend-dev-container
-    ports:
-      - "8080:8080" # Porta do Vite no desenvolvimento
-    volumes:
-      - ./frontend:/app # Mapeamento para hot reload
-      - /app/node_modules
-    environment:
-      VITE_BACKEND_URL: http://backend:8092
-    networks:
-      - app-network
-    command: npm run dev # Comando do Vite para hot reload
+  # frontend-dev:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.dev
+  #   container_name: frontend-dev-container
+  #   ports:
+  #     - "8080:8080" # Porta do Vite no desenvolvimento
+  #   volumes:
+  #     - ./frontend:/app # Mapeamento para hot reload
+  #     - /app/node_modules
+  #   environment:
+  #     VITE_BACKEND_URL: http://backend:8092
+  #   networks:
+  #     - app-network
+  #   command: npm run dev # Comando do Vite para hot reload
 
   # FRONTEND PARA PRODUÇÃO
   # Comente/descomente conforme necessário
-  # frontend-prod:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.prod
-  #   container_name: frontend-prod-container
-  #   ports:
-  #     - "8080:80" # Porta do NGINX no ambiente de produção
-  #   environment:
-  #     REACT_APP_BACKEND_URL: http://backend:8092
-  #   networks:
-  #     - app-network
 
+  frontend-prod:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: frontend-prod-container
+    ports:
+      - "80:80" # Porta do NGINX no ambiente de produção
+    environment:
+      REACT_APP_BACKEND_URL: http://backend:8092
+    networks:
+      - app-network
 volumes:
   postgres-data:
 
