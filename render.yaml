@@ -16,7 +16,7 @@ services:
     type: web
     runtime: docker
     plan: free
-    dockerfilePath: Frontend/Dockerfile.prod
+    dockerfilePath: Dockerfile.prod
     envVars:
       - key: REACT_APP_BACKEND_URL
         value: https://backend.onrender.com

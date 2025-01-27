@@ -6,3 +6,7 @@ git push origin main
 
 docker build -t backend-test -f Backend/photo-map/Dockerfile .
 
+git add .
+git commit -m "Deploy para o Render"
+git push origin main
+
