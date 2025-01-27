@@ -3,7 +3,7 @@ services:
     type: web
     runtime: docker
     plan: free
-    dockerfilePath: Backend/photo-map/Dockerfile
+    dockerfilePath: Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:postgresql://dpg-cubrv...ahncs0-a:5432/photo_map_db

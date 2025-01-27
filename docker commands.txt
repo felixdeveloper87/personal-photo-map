@@ -12,7 +12,8 @@ notepad docker-compose.yml
 docker-compose down -v
 docker-compose up --build
 
-mvn clean package
+cd Backend/photo-map
+mvn clean package 
 
 docker logs postgres-container
 
