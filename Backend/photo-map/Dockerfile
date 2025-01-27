@@ -2,8 +2,9 @@
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copia o pom.xml e a pasta src para o diretório de trabalho
-COPY . .
+# Copia o arquivo pom.xml e a pasta src para o diretório de trabalho
+COPY pom.xml .
+COPY src ./src
 
 # Compila o JAR pulando os testes
 RUN mvn clean package -DskipTests

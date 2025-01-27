@@ -1,0 +1,5 @@
+value: olFXPrFw3jFnOVyLM74Tf2kNli4cIDZh senha do db
+
+git add render.yaml
+git commit -m "Fix render.yaml paths"
+git push origin main
