@@ -53,11 +53,11 @@ services:
 
   frontend-prod:
     build:
-      context: ./frontend
+      context: .
       dockerfile: Dockerfile.prod
     container_name: frontend-prod-container
     ports:
-      - "80:80" # Porta do NGINX no ambiente de produção
+      - "80:80"
     environment:
       REACT_APP_BACKEND_URL: http://backend:8092
     networks:

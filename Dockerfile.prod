@@ -1,39 +1,35 @@
 # Etapa 1: Construir a aplicação (build)
 FROM node:18-alpine AS build
 
-# Aumenta o heap do Node para 4GB (ajuste se necessário)
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-
-# Define a pasta de trabalho
 WORKDIR /app
 
-# Copia os arquivos de dependências
-COPY ./Frontend/package*.json ./Frontend/
+# Copiar os arquivos de dependências do frontend
+COPY ./Frontend/package*.json ./
 
-# Instala as dependências
-WORKDIR /app/Frontend
+# Instalar as dependências
 RUN npm install
 
-# Copia o restante do projeto
-COPY ./Frontend/ .
+# Copiar o restante do projeto do frontend
+COPY ./Frontend ./
 
-# Cria o build de produção
+# Aumentar o limite de memória e criar o build de produção
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
 # Etapa 2: Servir usando NGINX
 FROM nginx:stable-alpine
 
-# Remove os arquivos HTML padrão do NGINX
+# Remover os arquivos HTML padrão do NGINX
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copia os arquivos compilados (build) para a pasta padrão do NGINX
-COPY --from=build /app/Frontend/dist /usr/share/nginx/html
+# Copiar os arquivos compilados do frontend para o NGINX
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copia o arquivo nginx.conf para dentro do contêiner
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copiar o arquivo nginx.conf para configurar o NGINX
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Expõe a porta dinâmica (PORT) do Heroku
+# Expor a porta 80
 EXPOSE 80
 
-# Comando para rodar o nginx
-CMD ["sh", "-c", "envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
+# Comando para iniciar o NGINX
+CMD ["nginx", "-g", "daemon off;"]
