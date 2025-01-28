@@ -29,7 +29,6 @@ public class UserService {
 
         AppUser newUser = new AppUser();
         newUser.setEmail(registerRequest.getEmail());
-        newUser.setEmail(registerRequest.getEmail());
         newUser.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         newUser.setRole("ROLE_USER");
 

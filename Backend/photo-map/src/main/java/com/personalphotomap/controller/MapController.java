@@ -37,8 +37,13 @@ public class MapController {
         }
 
         // Converte as imagens para URLs
+        String envBackendUrl = System.getenv("BACKEND_URL");
+        final String backendUrl = (envBackendUrl == null || envBackendUrl.isEmpty())
+                ? "http://localhost:8092"
+                : envBackendUrl;
+
         List<String> imageUrls = images.stream()
-                .map(image -> "http://localhost:8092" + image.getFilePath())
+                .map(image -> backendUrl + image.getFilePath()) // backendUrl agora é final
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(imageUrls);

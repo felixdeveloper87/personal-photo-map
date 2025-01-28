@@ -52,7 +52,7 @@ const ImageUploader = ({ countryId, onUpload, onUploadSuccess }) => {
 
     setIsUploading(true);
 
-    fetch('${process.env.REACT_APP_BACKEND_URL}images/upload', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/upload`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -48,8 +48,13 @@ public class ImageService {
             image.setYear(year);
             image.setEmail(username);
 
-            imageRepository.save(image);
-            imageUrls.add("http://localhost:8092" + image.getFilePath());
+            String backendUrl = System.getenv("BACKEND_URL");
+            if (backendUrl == null || backendUrl.isEmpty()) {
+                backendUrl = "http://localhost:8092"; // Usa localhost se a variável não estiver definida
+            }
+
+            imageUrls.add(backendUrl + image.getFilePath());
+
         }
         return imageUrls;
     }

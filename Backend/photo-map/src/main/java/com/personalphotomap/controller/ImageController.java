@@ -16,7 +16,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/images")
-@CrossOrigin(origins = "http://localhost:5174")
+//@CrossOrigin(origins = "http://localhost:5174")
 public class ImageController {
 
     @Autowired
@@ -79,7 +79,12 @@ public class ImageController {
 
                 imageRepository.save(image);
 
-                imageUrls.add("http://localhost:8092" + image.getFilePath());
+                String backendUrl = System.getenv("BACKEND_URL");
+                if (backendUrl == null || backendUrl.isEmpty()) {
+                    backendUrl = "http://localhost:8092"; // Usa localhost se a variável não estiver definida
+                }
+                imageUrls.add(backendUrl + image.getFilePath());
+
             }
 
             if (imageUrls.isEmpty()) {

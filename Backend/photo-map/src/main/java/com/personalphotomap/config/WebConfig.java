@@ -14,14 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/api/images/uploads/**")
                 .addResourceLocations("file:" + uploadDir);
     }
-
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**") // Permitir todas as rotas
-//                .allowedOrigins("http://localhost:8080") // Permitir apenas o front-end local
-//                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
-//                .allowedHeaders("*") // Permitir todos os cabeçalhos
-//                .allowCredentials(true); // Permitir cookies (se necessário)
-//    }
-
 }
+
+// ajustar essa classe para armazenar as imagens no AWS S3
