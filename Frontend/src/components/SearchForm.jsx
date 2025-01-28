@@ -59,7 +59,7 @@ export default function SearchForm({ countriesWithPhotos, onSearch }) {
                 <DropdownList
                   data={countriesWithPhotos.map((c) => ({ value: c.id, label: c.name }))}
                   value={selectedCountry}
-                  onChange={(value) => setSelectedCountry(value.value)}
+                  onChange={(value) => setSelectedCountry(value.value)} // Ajustado para capturar o valor correto
                   textField="label"
                   placeholder="Select a country"
                 />
@@ -68,9 +68,9 @@ export default function SearchForm({ countriesWithPhotos, onSearch }) {
                 <div style={{ marginBottom: '1rem' }}>
                   <label>Year:</label>
                   <DropdownList
-                    data={availableYears}
+                    data={availableYears.map((year) => ({ value: year, label: year }))}
                     value={selectedYear}
-                    onChange={setSelectedYear}
+                    onChange={(value) => setSelectedYear(value.value)} // Garantido que o valor correto seja capturado
                     placeholder="Select a year"
                   />
                 </div>

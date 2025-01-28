@@ -34,7 +34,7 @@ export const CountriesProvider = ({ children }) => {
 
         try {
             // API call to fetch photo and country counts
-            const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/images/count', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/count`, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Include the token for authentication
                 },
@@ -72,7 +72,7 @@ export const CountriesProvider = ({ children }) => {
 
         try {
             // API call to fetch the list of countries with photos
-            const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/images/countries-with-photos', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/countries-with-photos`, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Include the token for authentication
                 },

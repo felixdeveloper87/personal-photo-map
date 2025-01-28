@@ -25,7 +25,7 @@ const Timeline = () => {
 
   const fetchAllPhotos = async () => {
     try {
-      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/images/allPictures', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/images/allPictures`, {
         headers: getAuthHeaders(),
       });
 
